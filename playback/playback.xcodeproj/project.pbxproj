@@ -12,7 +12,6 @@
 		8B371C4A1448475B005A14F4 /* ofxOpenNITracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B371C261448475A005A14F4 /* ofxOpenNITracker.cpp */; };
 		8B371C4B1448475B005A14F4 /* ofxOpenNIUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B371C281448475A005A14F4 /* ofxOpenNIUser.cpp */; };
 		8B371C4C1448475B005A14F4 /* ofxOpenNIUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B371C2A1448475A005A14F4 /* ofxOpenNIUtils.cpp */; };
-		8B79DCC314DD478D006A3826 /* OpenNI2ViewNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B79DCC114DD478D006A3826 /* OpenNI2ViewNode.cpp */; };
 		8B79DD1814DD484D006A3826 /* ofxGrabCam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B79DD0514DD484D006A3826 /* ofxGrabCam.cpp */; };
 		8B79DD9B14DD49AB006A3826 /* Histogram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B79DD5414DD49AA006A3826 /* Histogram.cpp */; };
 		8B79DD9C14DD49AB006A3826 /* GUIAssets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B79DD5714DD49AA006A3826 /* GUIAssets.cpp */; };
@@ -50,6 +49,7 @@
 		8B79DE5A14DD4BB4006A3826 /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B79DE4F14DD4BB3006A3826 /* libnimRecorder.dylib */; };
 		8B79DE5B14DD4BB4006A3826 /* libOpenNI.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B79DE5014DD4BB3006A3826 /* libOpenNI.dylib */; };
 		8B79DE5C14DD4BB4006A3826 /* libOpenNI.jni.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B79DE5114DD4BB3006A3826 /* libOpenNI.jni.dylib */; };
+		8BD758D314DE74AF008736EE /* playback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BD758D214DE74AF008736EE /* playback.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -111,8 +111,6 @@
 		8B371C2A1448475A005A14F4 /* ofxOpenNIUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNIUtils.cpp; sourceTree = "<group>"; };
 		8B371C2B1448475A005A14F4 /* ofxOpenNIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIUtils.h; sourceTree = "<group>"; };
 		8B371C4D1448478F005A14F4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		8B79DCC114DD478D006A3826 /* OpenNI2ViewNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OpenNI2ViewNode.cpp; path = src/OpenNI2ViewNode.cpp; sourceTree = SOURCE_ROOT; };
-		8B79DCC214DD478D006A3826 /* OpenNI2ViewNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenNI2ViewNode.h; path = src/OpenNI2ViewNode.h; sourceTree = SOURCE_ROOT; };
 		8B79DCC514DD484B006A3826 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8B79DD0314DD484D006A3826 /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
 		8B79DD0514DD484D006A3826 /* ofxGrabCam.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGrabCam.cpp; sourceTree = "<group>"; };
@@ -316,6 +314,8 @@
 		8B79DE4F14DD4BB3006A3826 /* libnimRecorder.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libnimRecorder.dylib; sourceTree = "<group>"; };
 		8B79DE5014DD4BB3006A3826 /* libOpenNI.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOpenNI.dylib; sourceTree = "<group>"; };
 		8B79DE5114DD4BB3006A3826 /* libOpenNI.jni.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOpenNI.jni.dylib; sourceTree = "<group>"; };
+		8BD758D214DE74AF008736EE /* playback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playback.cpp; sourceTree = "<group>"; };
+		8BD758D414DE74B7008736EE /* playback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playback.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -400,24 +400,6 @@
 				8B371C2B1448475A005A14F4 /* ofxOpenNIUtils.h */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		8B371CF214484A6E005A14F4 /* common src */ = {
-			isa = PBXGroup;
-			children = (
-				8B371CF314484A6E005A14F4 /* previews */,
-			);
-			name = "common src";
-			path = "../common src";
-			sourceTree = "<group>";
-		};
-		8B371CF314484A6E005A14F4 /* previews */ = {
-			isa = PBXGroup;
-			children = (
-				8B79DCC114DD478D006A3826 /* OpenNI2ViewNode.cpp */,
-				8B79DCC214DD478D006A3826 /* OpenNI2ViewNode.h */,
-			);
-			path = previews;
 			sourceTree = "<group>";
 		};
 		8B79DCC414DD484B006A3826 /* ofxGrabCam */ = {
@@ -904,7 +886,6 @@
 			isa = PBXGroup;
 			children = (
 				8B371C4D1448478F005A14F4 /* README.md */,
-				8B371CF214484A6E005A14F4 /* common src */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -919,6 +900,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
+				8BD758D214DE74AF008736EE /* playback.cpp */,
+				8BD758D414DE74B7008736EE /* playback.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -961,7 +944,7 @@
 /* Begin PBXProject section */
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "toy0-kinectIntervalometer" */;
+			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "playback" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1025,7 +1008,6 @@
 				8B371C4A1448475B005A14F4 /* ofxOpenNITracker.cpp in Sources */,
 				8B371C4B1448475B005A14F4 /* ofxOpenNIUser.cpp in Sources */,
 				8B371C4C1448475B005A14F4 /* ofxOpenNIUtils.cpp in Sources */,
-				8B79DCC314DD478D006A3826 /* OpenNI2ViewNode.cpp in Sources */,
 				8B79DD1814DD484D006A3826 /* ofxGrabCam.cpp in Sources */,
 				8B79DD9B14DD49AB006A3826 /* Histogram.cpp in Sources */,
 				8B79DD9C14DD49AB006A3826 /* GUIAssets.cpp in Sources */,
@@ -1052,6 +1034,7 @@
 				8B79DDB114DD49AB006A3826 /* wdgSlider.cpp in Sources */,
 				8B79DDB214DD49AB006A3826 /* wdgTransform.cpp in Sources */,
 				8B79DDB314DD49AB006A3826 /* wdgXYZ.cpp in Sources */,
+				8BD758D314DE74AF008736EE /* playback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,7 +1349,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "toy0-kinectIntervalometer" */ = {
+		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "playback" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4B69B4E0A3A1720003C02F2 /* Debug */,

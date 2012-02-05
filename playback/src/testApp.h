@@ -5,9 +5,9 @@
 #include "ofxCVgui.h"
 #include "ofxOpenNI.h"
 
-#include "OpenNI2ViewNode.h"
+#include "playback.h"
 
-class testApp : public ofBaseApp, public ofThread {
+class testApp : public ofBaseApp {
 
 public:
 	testApp();
@@ -29,17 +29,6 @@ public:
 protected:
 	
 	//////////////////
-	// Device
-	//////////////////
-	//
-	ofxOpenNI			kinect;
-	//
-	//////////////////
-	
-	OpenNI2ViewNode		kinectView;
-	
-	
-	//////////////////
 	// GUI
 	//////////////////
 	//
@@ -54,19 +43,17 @@ protected:
 	//////////////////
 	
 	////
-	//recording
+	//playback
 	////
 	//
-	void	threadedFunction();
-	void	capture();
-	float	interval;
-	float	lastCapture;
-	bool	recording;
-	unsigned int count;
-	ofPixels rgb;
-	ofShortPixels depth;
-	string	path;
+	Playback playback;
+	//
 	wdgButton wdgSelectPath;
+	void	selectFiles();
+	string	firstFile;
+	string	lastFile;
+	vector<string> filenames;
+	unsigned int count;
 	//
 	////
 };
