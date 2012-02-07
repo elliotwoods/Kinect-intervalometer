@@ -3,7 +3,6 @@
 #include "ofMain.h"
 
 #include "ofxCVgui.h"
-#include "ofxOpenNI.h"
 
 #include "playback.h"
 
@@ -50,10 +49,14 @@ protected:
 	//
 	wdgButton wdgSelectPath;
 	void	selectFiles();
+	string	stripExtension(string &path);
+	void	crop(vector<string>& filenames, string firstFile, string lastFile="");
+	vector<string>	findRgbDepthPairs(vector<string>& filenames);
 	string	firstFile;
 	string	lastFile;
 	vector<string> filenames;
 	unsigned int count;
+	unsigned int position;
 	//
 	////
 };

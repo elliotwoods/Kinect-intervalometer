@@ -3,9 +3,12 @@
 #include "ofMain.h"
 
 #include "ofxCVgui.h"
-#include "ofxOpenNI.h"
+#include "ofxKinect.h"
 
-#include "OpenNI2ViewNode.h"
+#include "KinectViewNode.h"
+
+#define XYZ_EXT "-depth.png"
+#define RGB_EXT "-rgb.jpg"
 
 class testApp : public ofBaseApp, public ofThread {
 
@@ -32,11 +35,12 @@ protected:
 	// Device
 	//////////////////
 	//
-	ofxOpenNI			kinect;
+	ofxKinect			kinect;
+	bool				open;
 	//
 	//////////////////
 	
-	OpenNI2ViewNode		kinectView;
+	KinectViewNode		kinectView;
 	
 	
 	//////////////////
@@ -63,8 +67,8 @@ protected:
 	float	lastCapture;
 	bool	recording;
 	unsigned int count;
-	ofPixels rgb;
-	ofShortPixels depth;
+	ofImage rgb;
+	ofShortImage depth;
 	string	path;
 	wdgButton wdgSelectPath;
 	//

@@ -15,18 +15,19 @@ wdgSelectPath("Select path")
 	
 	scr3D.enableGrid(3.0f);
 	scrControl.push(new wdgCounter("images in sequence", count));
+	scrControl.push(new wdgCounter("position in sequence", position));
 	scrControl.push(&wdgSelectPath);
 }
 
 //--------------------------------------------------------------
 void testApp::setup(){	
 	screens.init(scrMain);	
+	playback.init();
 	ofBackground(117/2,130/2,160/2);
 	count = 0;
-	
-	selectFiles();
+	position = 0;
 }
-
+	
 //--------------------------------------------------------------
 void testApp::update(){
 	if (wdgSelectPath.getBang())
@@ -34,12 +35,18 @@ void testApp::update(){
 }
 //--------------------------------------------------------------
 void testApp::draw(){
-	
+
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+	if (key==OF_KEY_LEFT && position > 0)
+		position--;
+	if (key==OF_KEY_RIGHT && position < count-1 && count != 0)
+		position++;
+	
+	if (position < filenames.size())
+		playback.loadFrame(filenames[position]);
 }
 
 //--------------------------------------------------------------
@@ -84,8 +91,98 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 //--------------------------------------------------------------
 void testApp::selectFiles() {
-	firstFile = ofSystemLoadDialog("Select first rgb file in sequence").getPath();
-	lastFile = ofSystemLoadDialog("Select first depth file in sequence").getPath();
+	string file1In = ofSystemLoadDialog("Select first rgb file in sequence").getPath();
+	string file2In = ofSystemLoadDialog("Select first depth file in sequence").getPath();
 	
 	cout << firstFile << endl << lastFile << endl;
+	
+	if (!ofFile::doesFileExist(file1In)) {
+		ofLogError() << "File selection failed";
+		return;
+	}
+	
+	firstFile = file1In;
+	firstFile = stripExtension(firstFile);
+	
+	if (ofFile::doesFileExist(file2In)) {
+		lastFile = file2In;
+		lastFile = stripExtension(lastFile);
+	} else
+		lastFile = "";
+	
+	ofDirectory dir;
+	dir.listDir(ofFilePath::getEnclosingDirectory(file1In));
+	dir.sort();
+	vector<string> files;
+	for (unsigned int i=0; i<dir.size(); i++) {
+		files.push_back(dir.getPath(i));
+	}
+	
+	filenames = findRgbDepthPairs(files);
+	
+	cout << "Found " << filenames.size() << " pairs before crop to selection" << endl;
+	crop(filenames, firstFile, lastFile);
+	cout << "Found " << filenames.size() << " pairs after crop to selection" << endl;
+	count = filenames.size();
+	
+	if (count > 0) {
+		playback.loadFrame(filenames[0]);
+		position = 0;
+	}
+}
+
+
+//--------------------------------------------------------------
+string testApp::stripExtension(string &path) {
+	string extension = ofFilePath::getFileExt(path);
+	if (extension=="png") {
+		// depth
+		return path.substr(0, path.length() - string(XYZ_EXT).length());
+	} else if (extension=="jpg") {
+		// rgb
+		return path.substr(0, path.length() - string(RGB_EXT).length());
+	}
+	else
+		return "";
+}
+
+//--------------------------------------------------------------
+vector<string> testApp::findRgbDepthPairs(vector<string>& filenames) {
+	//takes in list of files, and returns trunks names where pair exists
+	//(trunk = without -xyz.hdr, etc).
+	
+	vector<string> results;
+	vector<string>::iterator it;
+	string rgbFile, depthFile;
+	string trunk;
+	for (it = filenames.begin(); it != filenames.end(); it++) {
+		trunk = stripExtension(*it);
+		if (trunk == "")
+			continue;
+		
+		//check if already have this
+		if (find(results.begin(), results.end(), trunk) != results.end())
+			continue;
+		
+		rgbFile = trunk + XYZ_EXT;
+		depthFile = trunk + RGB_EXT;
+		if (ofFile::doesFileExist(rgbFile) &&
+			ofFile::doesFileExist(depthFile))
+			results.push_back(trunk);
+	}
+	
+	return results;
+}
+
+//--------------------------------------------------------------
+void testApp::crop(vector<string>& filenames, string firstFile, string lastFile) {
+	vector<string>::iterator first, last = filenames.end();
+	
+	first = find(filenames.begin(), filenames.end(), firstFile);
+	if (lastFile != "")
+		last = find(first, filenames.end(), lastFile);
+	if (last != filenames.end())
+		last++;
+
+	filenames = vector<string>(first, last);
 }

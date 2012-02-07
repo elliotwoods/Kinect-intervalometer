@@ -5,6 +5,9 @@
 #pragma once
 #include "ofMain.h"
 
+#define XYZ_EXT "-depth.png"
+#define RGB_EXT "-rgb.jpg"
+
 class Playback : public ofNode {
 public:
 	void init();
