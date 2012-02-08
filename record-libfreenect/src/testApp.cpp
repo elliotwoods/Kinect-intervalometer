@@ -124,7 +124,7 @@ void testApp::capture(){
 		return;
 	
 	stringstream dateString;
-	dateString << ofGetYear() << "-" << ofGetMonth() << "-" << ofGetDay() << "," << ofGetHours() << "." << ofGetMinutes() << "." << ofGetSeconds();
+	dateString << ofGetYear() << "-" << ofGetMonth() << "-" << ofGetDay() << "," << ofGetHours() << "." << ofGetMinutes() << "." << ofGetSeconds() << "-" << ofGetElapsedTimeMillis();
 	
 	lock();
 	memcpy(rgb.getPixels(),	kinect.getPixels(), sizeof(unsigned char) * 640 * 480 * 3);

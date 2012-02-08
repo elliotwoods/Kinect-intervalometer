@@ -20,6 +20,7 @@ wdgRewind("Rewind")
 	scrControl.push(&wdgRewind);
 	scrControl.push(new wdgButton("Loop", loop));
 	scrControl.push(&wdgSelectPath);
+	scrControl.push(new wdgSlider("Point size", playback.pointSize, 1.0f, 10.0f));
 }
 
 //--------------------------------------------------------------

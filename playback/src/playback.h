@@ -10,6 +10,7 @@
 
 class Playback : public ofNode {
 public:
+	Playback();
 	void init();
 	void loadFrame(string path); ///< path is trunk filename, i.e. without -rgb.jpg or -depth.png
 	
@@ -19,4 +20,6 @@ public:
 	
 	ofImage rgb;
 	ofShortImage depth;
+	
+	float pointSize;
 };

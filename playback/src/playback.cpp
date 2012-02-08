@@ -4,6 +4,10 @@
 //
 #include "playback.h"
 
+Playback::Playback() {
+	pointSize = 1.0f;
+}
+
 void Playback::init() {
 	vector<ofVec3f> vertices;
 	vector<ofVec2f> texCoords;
@@ -23,8 +27,7 @@ void Playback::init() {
 	mesh.addColors(colors);
 	
 	shader.setUniformTexture("depth", depth, 0);
-	shader.setUniformTexture("rgb", rgb, 1);
-	
+	shader.setUniformTexture("rgb", rgb, 1);	
 }
 
 void Playback::loadFrame(string path) {
@@ -58,5 +61,6 @@ void Playback::loadFrame(string path) {
 }
 
 void Playback::customDraw() {
+	glPointSize(pointSize);
 	mesh.drawVertices();
 }
