@@ -5,17 +5,20 @@ scrPreviewDepth("Depth", playback.depth),
 scrPreviewRGB("RGB", playback.rgb),
 scr3D("3D", playback),
 
-wdgSelectPath("Select path")
-
+wdgSelectPath("Select path"),
+wdgRewind("Rewind")
 {
 	scrMain.push(scrPreviewDepth);
 	scrMain.push(scrPreviewRGB);
 	scrMain.push(scrControl);
 	scrMain.push(scr3D);
 	
-	scr3D.enableGrid(3.0f);
+	scr3D.enableGrid(1.0f);
 	scrControl.push(new wdgCounter("images in sequence", count));
-	scrControl.push(new wdgCounter("position in sequence", position));
+	scrControl.push(new wdgSlider("position in sequence", position, 0, count));
+	scrControl.push(new wdgButton("Play", playing));
+	scrControl.push(&wdgRewind);
+	scrControl.push(new wdgButton("Loop", loop));
 	scrControl.push(&wdgSelectPath);
 }
 
@@ -23,13 +26,19 @@ wdgSelectPath("Select path")
 void testApp::setup(){	
 	screens.init(scrMain);	
 	playback.init();
-	ofBackground(117/2,130/2,160/2);
+	ofBackground(117/4,130/4,160/4);
 	count = 0;
 	position = 0;
 }
 	
 //--------------------------------------------------------------
 void testApp::update(){
+	if (playing) {
+		moveFrame(1);
+	}
+	if (wdgRewind.getBang())
+		moveFrame(-(int)position);
+	
 	if (wdgSelectPath.getBang())
 		selectFiles();
 }
@@ -41,12 +50,9 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 	if (key==OF_KEY_LEFT && position > 0)
-		position--;
+		moveFrame(-1);
 	if (key==OF_KEY_RIGHT && position < count-1 && count != 0)
-		position++;
-	
-	if (position < filenames.size())
-		playback.loadFrame(filenames[position]);
+		moveFrame(1);
 }
 
 //--------------------------------------------------------------
@@ -89,6 +95,24 @@ void testApp::dragEvent(ofDragInfo dragInfo){
 
 }
 
+//--------------------------------------------------------------
+void testApp::moveFrame(int distance) {
+	int newPosition = distance + (int)position;
+	if (newPosition < 0)
+		newPosition = 0;
+	if (newPosition >= filenames.size()) {
+		if (loop)
+			newPosition = 0;
+		else {
+			playing = false;
+			newPosition = filenames.size() - 1;
+		}
+	}
+	position = newPosition;
+	
+	if (position < filenames.size())
+		playback.loadFrame(filenames[position]);
+}
 //--------------------------------------------------------------
 void testApp::selectFiles() {
 	string file1In = ofSystemLoadDialog("Select first rgb file in sequence").getPath();

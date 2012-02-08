@@ -50,6 +50,7 @@ void OpenNI2ViewNode::update() {
 //-----
 
 void OpenNI2ViewNode::customDraw() {
+	
 	update();
 	
 	glEnableClientState(GL_VERTEX_ARRAY);

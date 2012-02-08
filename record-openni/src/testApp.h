@@ -3,10 +3,14 @@
 #include "ofMain.h"
 
 #include "ofxCVgui.h"
+#include "ofxOpenNI.h"
 
-#include "playback.h"
+#include "OpenNI2ViewNode.h"
 
-class testApp : public ofBaseApp {
+#define XYZ_EXT "-depth.png"
+#define RGB_EXT "-rgb.jpg"
+
+class testApp : public ofBaseApp, public ofThread {
 
 public:
 	testApp();
@@ -28,6 +32,18 @@ public:
 protected:
 	
 	//////////////////
+	// Device
+	//////////////////
+	//
+	ofxOpenNI			kinect;
+	bool				open;
+	//
+	//////////////////
+	
+	OpenNI2ViewNode		kinectView;
+	
+	
+	//////////////////
 	// GUI
 	//////////////////
 	//
@@ -42,25 +58,19 @@ protected:
 	//////////////////
 	
 	////
-	//playback
+	//recording
 	////
 	//
-	Playback playback;
-	bool playing;
-	bool loop;
-	//
-	wdgButton wdgSelectPath;
-	wdgButton wdgRewind;
-	void	moveFrame(int distance);
-	void	selectFiles();
-	string	stripExtension(string &path);
-	void	crop(vector<string>& filenames, string firstFile, string lastFile="");
-	vector<string>	findRgbDepthPairs(vector<string>& filenames);
-	string	firstFile;
-	string	lastFile;
-	vector<string> filenames;
+	void	threadedFunction();
+	void	capture();
+	float	interval;
+	float	lastCapture;
+	bool	recording;
 	unsigned int count;
-	float position;
+	ofImage rgb;
+	ofShortImage depth;
+	string	path;
+	wdgButton wdgSelectPath;
 	//
 	////
 };
